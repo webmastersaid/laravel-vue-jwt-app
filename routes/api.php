@@ -21,3 +21,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('users')->namespace('App\Http\Controllers\User')->group(function () {
     Route::post('/register', StoreController::class);
 });
+
+Route::prefix('fruits')->namespace('App\Http\Controllers\Fruit')->group(function () {
+    Route::get('/', IndexController::class);
+    Route::get('/{fruit}', ShowController::class);
+    Route::post('/', StoreController::class);
+    Route::patch('/{fruit}', UpdateController::class);
+    Route::delete('/{fruit}', DeleteController::class);
+});
