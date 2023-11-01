@@ -18,6 +18,9 @@ export default {
             <li class="nav-item">
                 <RouterLink class="nav-link" :to="{ name: 'user.register' }">Register</RouterLink>
             </li>
+            <li class="nav-item">
+                <RouterLink class="nav-link" :to="{ name: 'user.person' }">You</RouterLink>
+            </li>
         </ul>
         <RouterView class="pt-5"></RouterView>
     </div>

@@ -1,4 +1,6 @@
 <script>
+import api from '../../api'
+
 export default {
     data() {
         return {
@@ -7,7 +9,7 @@ export default {
     },
     methods: {
         getFruits() {
-            axios.get('/api/fruits/')
+            api.get('/api/auth/fruits/')
                 .then(res => {
                     this.fruits = res.data.data
                 })

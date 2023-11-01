@@ -5,6 +5,15 @@ export default {
             email: null,
             password: null,
         }
+    },
+    methods: {
+        login() {
+            axios.post('/api/auth/login', { email: this.email, password: this.password })
+            .then(res => {
+                localStorage.setItem('access_token', res.data.access_token)
+                this.$router.push({name: 'user.person'})
+            })
+        }
     }
 }
 </script>
@@ -19,7 +28,7 @@ export default {
             <input v-model="password" type="password" class="form-control" id="password" placeholder="password">
         </div>
         <div class="mb-3">
-            <button type="button" class="btn btn-primary">Login</button>
+            <button @click.prevent="login" type="button" class="btn btn-primary">Login</button>
         </div>
     </div>
 </template>
