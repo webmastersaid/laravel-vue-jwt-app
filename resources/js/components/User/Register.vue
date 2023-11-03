@@ -7,14 +7,21 @@ export default {
                 email: null,
                 password: null,
                 password_confirmation: null,
-            }
+            },
+            message: null,
         }
     },
     methods: {
         register() {
             axios.post('/api/users/register', this.user)
                 .then(res => {
-                    console.log(this.user)
+                    const data = res.data
+                    if (data.access_token) {
+                        localStorage.setItem('access_token', res.data.access_token)
+                        this.$router.push({ name: 'user.person' })
+                    } else {
+                        this.message = data.message
+                    }
                 })
         }
     }
@@ -38,6 +45,11 @@ export default {
             <label for="password_confirmation" class="form-label">Confirm password</label>
             <input v-model="user.password_confirmation" type="password" class="form-control" id="password_confirmation"
                 placeholder="confirm password">
+        </div>
+        <div v-if="message" class="mb-3">
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
         </div>
         <div class="mb-3">
             <button @click.prevent="register" type="button" class="btn btn-primary">Register</button>

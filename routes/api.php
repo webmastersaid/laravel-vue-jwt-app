@@ -24,7 +24,7 @@ Route::prefix('users')->namespace('App\Http\Controllers\User')->group(function (
 });
 
 Route::prefix('auth')->middleware('api')->group(function () {
-    Route::middleware('auth:api')->group(function(){
+    Route::middleware('jwt.auth')->group(function(){
         Route::prefix('fruits')->namespace('App\Http\Controllers\Fruit')->group(function () {
             Route::get('/', IndexController::class);
             Route::get('/{fruit}', ShowController::class);

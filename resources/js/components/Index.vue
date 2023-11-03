@@ -5,6 +5,6 @@ export default {
 </script>
 <template>
     <div>
-        Index page
+        <h1>Index page</h1>
     </div>
 </template>
