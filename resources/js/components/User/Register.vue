@@ -15,13 +15,11 @@ export default {
         register() {
             axios.post('/api/users/register', this.user)
                 .then(res => {
-                    const data = res.data
-                    if (data.access_token) {
-                        localStorage.setItem('access_token', res.data.access_token)
-                        this.$router.push({ name: 'user.person' })
-                    } else {
-                        this.message = data.message
-                    }
+                    localStorage.setItem('access_token', res.data.access_token)
+                    this.$router.push({ name: 'user.person' })
+                })
+                .catch(e => {
+                    this.message = e.response.data.error
                 })
         }
     }
